@@ -1,6 +1,6 @@
-require_relative("../db/sql_runner")
-require_relative("movie.rb")
-require_relative("star.rb")
+require_relative('../db/sql_runner')
+require_relative('movie.rb')
+require_relative('star.rb')
 
 
 class Casting
