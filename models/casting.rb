@@ -3,8 +3,6 @@ require_relative('movie.rb')
 require_relative('star.rb')
 
 
-
-
 class Casting
 
 attr_reader :id
