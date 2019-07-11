@@ -25,7 +25,6 @@ casting1 = Casting.new({
   'star_id' => star1.id,
   'fee' => 50
     })
-
 casting1.save()
 
 

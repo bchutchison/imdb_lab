@@ -3,6 +3,8 @@ require_relative('movie.rb')
 require_relative('star.rb')
 
 
+
+
 class Casting
 
 attr_reader :id
@@ -13,6 +15,22 @@ def initialize(options)
   @movie_id = options['movie_id'].to_i
   @star_id =  options['star_id'].to_i
   @fee = options['fee'].to_i
+end
+
+def movie
+  sql = "SELECT * FROM movies
+  WHERE id = $1"
+  values = [@movie_id]
+  movie = SqlRunner.run(sql, values).first
+  return Movie.new(movie)
+end
+
+def star
+  sql = "SELECT * FROM stars
+  WHERE id = $1"
+  values = [@star_id]
+  star = SqlRunner.run(sql, values).first
+  return Star.new(star)
 end
 
 def save()
@@ -41,6 +59,13 @@ def update()
   WHERE id = $4 "
   values = [@movie_id, @star_id, @fee, @id]
   SqlRunner.run(sql, values)
+end
+
+def self.all()
+  sql = "SELECT * FROM castings"
+  castings = SqlRunner.run(sql)
+  result = castings.map { |casting| Casting.new(casting)}
+  return result
 end
 
 end
